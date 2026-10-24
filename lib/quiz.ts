@@ -41,6 +41,15 @@ export type Animal = {
 export const LINE_URL = "https://line.me/R/ti/p/@691cwwnw";
 export const JOBS_URL = LINE_URL;
 
+// next/image with images.unoptimized does not prepend basePath.
+// Prefix once here so production is /animals/images/*.png and dev stays /images/*.png.
+const basePath = process.env.NODE_ENV === "production" ? "/animals" : "";
+
+function imagePath(filename: string): string {
+  const name = filename.split("/").filter(Boolean).pop() ?? filename;
+  return `${basePath}/images/${name}`;
+}
+
 export const ANIMALS: Animal[] = [
   {
     id: "capybara",
@@ -60,7 +69,7 @@ export const ANIMALS: Animal[] = [
       { icon: "🕊️", text: "化解衝突" },
     ],
     jobs: ["包裝", "品檢", "固定產線", "行政"],
-    image: "/images/Capybara.png",
+    image: imagePath("Capybara.png"),
     color: "#b8865a",
   },
   {
@@ -81,7 +90,7 @@ export const ANIMALS: Animal[] = [
       { icon: "✨", text: "做事有品質" },
     ],
     jobs: ["組裝", "作業員", "資料處理", "獨立工作"],
-    image: "/images/Cat.png",
+    image: imagePath("Cat.png"),
     color: "#d8913a",
   },
   {
@@ -102,7 +111,7 @@ export const ANIMALS: Animal[] = [
       { icon: "✅", text: "重視正確性" },
     ],
     jobs: ["品檢", "倉管", "盤點", "行政"],
-    image: "/images/Owl.png",
+    image: imagePath("Owl.png"),
     color: "#7a5f4a",
   },
   {
@@ -123,7 +132,7 @@ export const ANIMALS: Animal[] = [
       { icon: "📈", text: "喜歡看到明確成果" },
     ],
     jobs: ["物流理貨", "倉儲", "機台操作", "技術員", "計件／績效型工作"],
-    image: "/images/SnowLeopard.png",
+    image: imagePath("SnowLeopard.png"),
     color: "#5f7a94",
   },
   {
@@ -144,7 +153,7 @@ export const ANIMALS: Animal[] = [
       { icon: "🙌", text: "願意互相支援" },
     ],
     jobs: ["團隊產線", "包裝", "門市", "服務類"],
-    image: "/images/Otter.png",
+    image: imagePath("Otter.png"),
     color: "#4f8fa6",
   },
   {
@@ -165,7 +174,7 @@ export const ANIMALS: Animal[] = [
       { icon: "☀️", text: "正能量滿點" },
     ],
     jobs: ["物流", "理貨", "出貨", "搬運", "現場作業"],
-    image: "/images/Retriever.png",
+    image: imagePath("Retriever.png"),
     color: "#d9912a",
   },
   {
@@ -186,7 +195,7 @@ export const ANIMALS: Animal[] = [
       { icon: "📚", text: "經驗累積快" },
     ],
     jobs: ["長期派遣", "產線", "倉儲", "機台操作"],
-    image: "/images/Elephant.png",
+    image: imagePath("Elephant.png"),
     color: "#7d8896",
   },
   {
@@ -207,7 +216,7 @@ export const ANIMALS: Animal[] = [
       { icon: "🏆", text: "追求成就感" },
     ],
     jobs: ["儲備幹部", "線長", "技術職", "高獎金職缺"],
-    image: "/images/Lion.png",
+    image: imagePath("Lion.png"),
     color: "#c9731f",
   },
 ];
